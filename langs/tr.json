@@ -1,0 +1,9 @@
+{
+  "title": "KodSozluk",
+  "auth": {
+    "username": "Kullanıcı Adı",
+    "password": "Şifreniz",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol"
+  }
+}

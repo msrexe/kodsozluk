@@ -6,6 +6,8 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var permissions = require('./permission');
+var lang = require('./lang');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
@@ -21,12 +23,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('express-session')({
-  secret: 'keyboard cat',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(permissions);
+app.use(lang);
 
 const Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
