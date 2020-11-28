@@ -1,15 +1,16 @@
 var passport = require('passport');
-var Account = require('../models/account');
+const Account = require('../models/Account');
 
 exports.getLogin = (req, res) => {
   res.render('login');
 } 
 
-exports.postLogin = passport.authenticate('local', { 
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true 
-});
+exports.postLogin = (req, res, next) => {
+  passport.authenticate('local', { 
+    successRedirect: '/',
+    failureRedirect: '/login',
+  })(req, res, next);
+};
 
 exports.getRegister = (req, res) => {
   res.render('register')
@@ -18,7 +19,8 @@ exports.getRegister = (req, res) => {
 exports.postRegister = (req, res) => {
   Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
     if (err) {
-        return res.render('register', { account : account });
+      console.log(err);
+      return res.render('register', { user : account });
     }
 
     passport.authenticate('local')(req, res, function () {

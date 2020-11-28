@@ -1,0 +1,14 @@
+{{#if error}}
+  <div class="columns p-5">
+    <div class="column">
+      <h1 class="title has-text-centered"> 😞 {{error.message}}</h1>
+    </div>
+  </div>
+{{else}}
+  <div class="columns">
+    <div class="column is-justify-content-center">
+      <h1 class="title">user: {{username}}</h1>
+    </div>
+  </div>
+  {{> entries}}
+{{/if}}

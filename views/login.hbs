@@ -1,7 +1,26 @@
-<form action="/login" method="post">
-  <label for="username">{{lang.auth.username}}: </label>
-  <input type="text" name="username" id="username">
-  <label for="password">{{lang.auth.password}}: </label>
-  <input type="text" name="password" id="password">
-  <input type="submit" value="{{lang.auth.login}}">
-</form>
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
+    <h1 class="title">
+      {{lang.auth.login}}
+    </h1>
+    <form action="/login" method="post">
+      <div class="field">
+        <label class="label">{{lang.auth.username}}</label>
+        <div class="control">
+          <input class="input" type="text" name="username">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">{{lang.auth.password}}</label>
+        <div class="control">
+          <input class="input" type="text" name="password">
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <input type="submit" value="{{lang.auth.login}}" class="button is-primary">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
