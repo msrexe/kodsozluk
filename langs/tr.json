@@ -19,6 +19,7 @@
   "error": {
     "short-username": "Kullanıcı adınız en az 4 karakter olmalı",
     "short-password": "Şifre 8 karakter veya daha uzun olmalı",
-    "special-character-username": "Kullanıcı adı özel karakter içermemelidir"
+    "special-character-username": "Kullanıcı adı özel karakter içermemelidir",
+    "no-user": "Böyle bir kullanıcı yok 😞"
   }
 }

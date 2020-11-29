@@ -1,7 +1,7 @@
 {{#if error}}
   <div class="columns p-5">
     <div class="column">
-      <h1 class="title has-text-centered"> 😞 {{error.message}}</h1>
+      <h1 class="title has-text-centered">{{lookup lang.error error}}</h1>
     </div>
   </div>
 {{else}}

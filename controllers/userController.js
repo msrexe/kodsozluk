@@ -19,17 +19,14 @@ exports.getUser = (req, res) => {
           ownprofile = true;
         }
         res.render('user', {
+          title: user.username,
           username: user.username,
           entries: entries,
           ownprofile: ownprofile
         })
       });
     } else {
-      res.locals.error = {
-        type: 'no-user',
-        message: 'User Not Found',
-      };
-      res.render('user');
+      res.render('user', {error: 'no-user'});
     }
   });
 
