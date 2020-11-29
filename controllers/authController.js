@@ -41,5 +41,10 @@ exports.postRegister = (req, res) => {
     passport.authenticate('local')(req, res, () => {
         res.redirect('/');
     });
-});
+  });
+}
+
+exports.getLogout = (req, res) => {
+  req.logout();
+  return res.redirect('/');
 }
