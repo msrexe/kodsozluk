@@ -1,28 +1,29 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        {{lang.auth.register}}
-      </h1>
-    </div>
+{{#if error}}  
+  {{> errorMessage error=error}}
+{{/if}}
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
+    <h1 class="title">
+      {{lang.auth.register}}
+    </h1>
+    <form action="/register" method="post">
+      <div class="field">
+        <label class="label">{{lang.auth.username}}</label>
+        <div class="control">
+          <input class="input" type="text" name="username">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">{{lang.auth.password}}</label>
+        <div class="control">
+          <input class="input" type="text" name="password">
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <input type="submit" value="{{lang.auth.register}}" class="button is-link">
+        </div>
+      </div>
+    </form>
   </div>
-</section>
-<form action="/register" method="post">
-  <div class="field">
-    <label class="label">{{lang.auth.username}}</label>
-    <div class="control">
-      <input class="input" type="text" name="username">
-    </div>
-  </div>
-  <div class="field">
-    <label class="label">{{lang.auth.password}}</label>
-    <div class="control">
-      <input class="input" type="text" name="password">
-    </div>
-  </div>
-  <div class="field is-grouped">
-    <div class="control">
-      <input type="submit" value="{{lang.auth.register}}" class="button is-link">
-    </div>
-  </div>
-</form>
+</div>

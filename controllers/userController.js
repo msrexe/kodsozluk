@@ -6,7 +6,6 @@ exports.getUser = (req, res) => {
 
   Account.findOne({ username: queryUsername}, (err, user) => {
     if (err) {
-      console.log(err);
       return res.render('user', {error: err});
     } 
     if (user) {

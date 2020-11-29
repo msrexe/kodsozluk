@@ -4,7 +4,9 @@
     "username": "Kullanıcı Adı",
     "password": "Şifreniz",
     "login": "Giriş Yap",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "logout": "Çıkış Yap",
+    "wrong": "Girilen bilgiler herhangi bir kullanıcı ile eşleşmedi"
   },
   "entry": {
     "entry": "Girit",
@@ -13,5 +15,10 @@
   },
   "navbar": {
     "profile": "Profilim"
+  },
+  "error": {
+    "short-username": "Kullanıcı adınız en az 4 karakter olmalı",
+    "short-password": "Şifre 8 karakter veya daha uzun olmalı",
+    "special-character-username": "Kullanıcı adı özel karakter içermemelidir"
   }
 }

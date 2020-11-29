@@ -5,8 +5,7 @@ const findUser = (_id) => {
   return new Promise((resolve) => { 
     Account.findOne({ _id: _id}).then((user) => {
       resolve(user);
-    }).catch((err) => {
-      console.log(err);
+    }).catch(() => {
       resolve(false);
     })
   });

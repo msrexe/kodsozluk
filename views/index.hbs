@@ -1,13 +1,11 @@
-<section class="section">
-  <h1 class="title">
-    {{lang.title}}
-  </h1>
+<h1 class="title mb-5 is-block">
+  {{lang.title}}
+</h1>
+{{#if username}}
   <p class="subtitle">
-    {{#if username}}
-      Welcome to {{username}}
-    {{/if}}
+      Welcome {{username}}
   </p>
-  <div class="container">
-    {{> entries}}
-  </div>
-</section>
+{{/if}}
+<div class="container">
+  {{> entries}}
+</div>

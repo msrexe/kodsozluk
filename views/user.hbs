@@ -6,8 +6,9 @@
   </div>
 {{else}}
   <div class="columns">
-    <div class="column is-justify-content-center">
-      <h1 class="title">user: {{username}}</h1>
+    <div class="column is-justify-content-space-between is-flex">
+      <h1 class="title">{{username}}</h1>
+      <a href="/logout" class="button is-primary">{{lang.auth.logout}}</a>
     </div>
   </div>
   {{> entries}}
