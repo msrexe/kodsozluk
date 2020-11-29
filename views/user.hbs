@@ -8,7 +8,9 @@
   <div class="columns">
     <div class="column is-justify-content-space-between is-flex">
       <h1 class="title">{{username}}</h1>
-      <a href="/logout" class="button is-primary">{{lang.auth.logout}}</a>
+      {{#if ownprofile}}
+        <a href="/logout" class="button is-primary">{{lang.auth.logout}}</a>
+      {{/if}}
     </div>
   </div>
   {{> entries}}

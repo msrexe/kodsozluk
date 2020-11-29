@@ -14,14 +14,16 @@ exports.getUser = (req, res) => {
           return res.redirect(req.get('referer'))
         }
         entries = entries.map((entry) => entry.toJSON());
+        var ownprofile = false;
+        if (req.user && user.username == req.user.username) {
+          ownprofile = true;
+        }
         res.render('user', {
           username: user.username,
-          entries: entries
+          entries: entries,
+          ownprofile: ownprofile
         })
       });
-      // res.render('user', {
-      //   username: user.username
-      // });
     } else {
       res.locals.error = {
         type: 'no-user',

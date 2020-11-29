@@ -1,4 +1,5 @@
-const blockVisitor = ['/action', '/action/add-post'];
+//control user permission on routes
+const blockVisitor = ['/logout'];
 const blockUsers = ['/login', '/register'];
 
 module.exports = (req, res, next) => {
