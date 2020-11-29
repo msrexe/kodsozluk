@@ -1,8 +1,18 @@
+{{#unless entries}}
+  <div class="columns p-5">
+    <div class="column">
+      <h4 class="title is-4 has-text-centered">{{lang.entry.noEntry}}</h4>
+    </div>
+  </div>
+{{/unless}}
+
 {{#each entries}}
   <div class="box">
-    <a href="/term/{{title}}" class="title mb-4 is-block">
-      {{title}}
-    </a>
+    {{#unless ../term}}  
+      <a href="/term/{{title}}" class="title mb-4 is-block">
+        {{title}}
+      </a>
+    {{/unless}}
     <div class="content">
       {{body}}
     </div>

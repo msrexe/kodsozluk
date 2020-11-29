@@ -8,7 +8,8 @@
   },
   "entry": {
     "entry": "Girit",
-    "send": "Gönder"
+    "send": "Gönder",
+    "noEntry": "Burada görüntülenecek entry yok 😞"
   },
   "navbar": {
     "profile": "Profilim"

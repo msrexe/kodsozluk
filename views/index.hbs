@@ -1,11 +1,13 @@
 <section class="section">
-  <div class="container">
-    <h1 class="title">
-      {{lang.title}}
-    </h1>
-    <p class="subtitle">
+  <h1 class="title">
+    {{lang.title}}
+  </h1>
+  <p class="subtitle">
+    {{#if username}}
       Welcome to {{username}}
-    </p>
+    {{/if}}
+  </p>
+  <div class="container">
     {{> entries}}
   </div>
 </section>
