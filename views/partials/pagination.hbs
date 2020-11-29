@@ -1,0 +1,16 @@
+<nav class="pagination" role="navigation" aria-label="pagination">
+  <ul class="pagination-list">
+    {{#for 1 pageCount 1 }}      
+      <li>
+        <a 
+          class="pagination-link" 
+          aria-label="Page {{this}}" 
+          aria-current="page" 
+          href="{{../pageParam}}{{../pageTitle}}/{{this}}"
+        >
+          {{this}}
+        </a>
+      </li>
+    {{/for}}
+  </ul>
+</nav>

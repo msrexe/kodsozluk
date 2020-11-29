@@ -21,7 +21,16 @@ app.engine( 'hbs', hbs( {
   extname: 'hbs', 
   defaultLayout: 'main', 
   layoutsDir: __dirname + '/views/layouts/',
-  partialsDir: __dirname + '/views/partials/'
+  partialsDir: __dirname + '/views/partials/',
+  helpers: {
+    for: (from, to, incr, block) => {
+      to = parseInt(to) + 1;
+      var accum = '';
+      for(var i = from; i < to; i += incr)
+          accum += block.fn(i);
+      return accum;
+    }
+  }
 } ) );
 app.set('view engine', 'hbs');
 app.use(logger('dev'));
@@ -38,7 +47,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(permissions);
 app.use(lang);
-
 
 const Account = require('./models/Account');
 passport.use(new LocalStrategy(Account.authenticate()));
@@ -60,8 +68,8 @@ mongoose.connect(process.env.MONGODB, {useNewUrlParser: true, useUnifiedTopology
 });
 
 // routes
-app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', indexRouter);
 app.use('/user', userRouter);
 
 // catch 404 and forward to error handler

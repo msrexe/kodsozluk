@@ -2,7 +2,7 @@ var passport = require('passport');
 const Account = require('../models/Account');
 const validation = require('../validation');
 exports.getLogin = (req, res) => {
-  res.render('login');
+  res.render('login', {title: 'Login'});
 } 
 
 exports.postLogin = (req, res, next) => {
@@ -23,7 +23,7 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.getRegister = (req, res) => {
-  res.render('register')
+  res.render('register', {title: 'Register'})
 } 
 
 exports.postRegister = (req, res) => {

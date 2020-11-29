@@ -1,11 +1,14 @@
 <a href="/term/{{title}}" class="title is-block">{{title}}</a>
 {{> entries term=true}}
-<form method="post">
-  <div class="field">
-    <label class="label" for="body">{{lang.entry.entry}}</label>
-    <textarea class="textarea" name="body" id="body"></textarea>
-  </div>
-  <div class="field is-grouped">
-    <input class="button is-primary" type="submit" value="{{lang.entry.send}}">
-  </div>
-</form>
+{{> pagination pageCount=pageCount pageParam="/term/" pageTitle=title}}
+{{#if user}}    
+  <form method="post">
+    <div class="field">
+      <label class="label" for="body">{{lang.entry.entry}}</label>
+      <textarea class="textarea" name="body" id="body"></textarea>
+    </div>
+      <div class="field is-grouped">
+        <input class="button is-primary" type="submit" value="{{lang.entry.send}}">
+      </div>
+  </form>
+{{/if}}

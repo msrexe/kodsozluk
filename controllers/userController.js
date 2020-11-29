@@ -1,19 +1,14 @@
-const Account = require('../models/Account');
-const Entry = require('../models/Entry');
+const method = require('../methods');
 
-exports.getUser = (req, res) => {
+exports.getUser = async (req, res) => {
   const queryUsername = req.params.username;
+  const page = req.params.page || 1;
 
-  Account.findOne({ username: queryUsername}, (err, user) => {
-    if (err) {
-      return res.render('user', {error: err});
-    } 
+  method.findUser({ username: queryUsername}).then(async (user) => {
     if (user) {
-      Entry.find({user: user._id}).sort('-date').limit(10).exec((err, entries) => {
-        if (err) {
-          return res.redirect(req.get('referer'))
-        }
-        entries = entries.map((entry) => entry.toJSON());
+      const pageCount = Math.ceil(await method.countEntry({user: user._id}) / 10);
+      method.getEntries({user: user._id}, 10, page).then((entries) => {
+        //checking if user see own profile
         var ownprofile = false;
         if (req.user && user.username == req.user.username) {
           ownprofile = true;
@@ -22,12 +17,12 @@ exports.getUser = (req, res) => {
           title: user.username,
           username: user.username,
           entries: entries,
-          ownprofile: ownprofile
+          ownprofile: ownprofile,
+          pageCount: pageCount
         })
       });
     } else {
       res.render('user', {error: 'no-user'});
-    }
+    }    
   });
-
 } 

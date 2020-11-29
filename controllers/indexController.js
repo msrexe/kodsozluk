@@ -1,61 +1,38 @@
-const Entry = require('../models/Entry');
-const Account = require('../models/Account');
-
-const findUser = (_id) => {
-  return new Promise((resolve) => { 
-    Account.findOne({ _id: _id}).then((user) => {
-      resolve(user);
-    }).catch(() => {
-      resolve(false);
-    })
-  });
-}
-
-const getEntries = async (cond = {}, limit = 10) => {
-  let entries = await Entry.find(cond).sort('-date').limit(limit).exec();
-  entries = await Promise.all(entries.map(async (entry) => {
-    const user = await findUser(entry.user);
-    entry = entry.toJSON();
-    entry.user = user.toJSON();
-    return entry;
-  }));
-  return entries;
-}
-
-
+const method = require('../methods');
 
 exports.getHome = async (req, res) => {
-  getEntries().then((entries) => {
+  const page = req.params.page || 1;
+  const pageCount = Math.ceil(await method.countEntry() / 10);
+  method.getEntries({}, 10, page).then((entries) => {
     res.render('index', {
-      title: 'Express', 
+      title: 'KodSozluk', 
       user: req.user,
-      entries: entries
+      entries: entries,
+      pageCount: pageCount
     });
   });
 };
 
-exports.getTerm = (req, res) => {
-  getEntries({title: req.params.title}).then((entries) => {
+exports.getTerm = async (req, res) => {
+  const page = req.params.page || 1;
+  const pageCount = Math.ceil(await method.countEntry({title: req.params.title}) / 10);
+  method.getEntries({title: req.params.title}, 10, page).then((entries) => {
     res.render('term', {
       title: req.params.title,
-      entries: entries
+      entries: entries,
+      pageCount: pageCount
     })
   });
 };
 
 exports.postTerm = (req, res) => {
   if (req.user) {    
-    const entry = new Entry({
-      title: req.params.title,
-      body: req.body.body,
-      user: req.user._id
-    });
-    entry.save((err) => {
-      if (err) {
-        console.error(err);
-      }
-    });
+    method.saveEntry(
+      req.params.title, 
+      req.body.body, 
+      req.user._id
+    );
   }
-  res.redirect(req.get('referer'));
+  return res.redirect(req.get('referer'));
 }
 
