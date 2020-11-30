@@ -1,6 +1,7 @@
 var passport = require('passport');
 const Account = require('../models/Account');
 const validation = require('../validation');
+
 exports.getLogin = (req, res) => {
   res.render('login', {title: 'Login'});
 } 
@@ -30,13 +31,12 @@ exports.postRegister = (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const validErr = validation.register(username, password);
-  if (validErr) {
+  if (validErr.length > 0) {
     return res.render('register', {error: validErr})
   }
-  Account.register(new Account({ username : username }), password, (err, account) => {
+  Account.register(new Account({ username : username }), password, (err) => {
     if (err) {
-      console.log(err);
-      return res.render('register', { user : account });
+      return res.render('register', { error : [err.message] });
     }
     passport.authenticate('local')(req, res, () => {
         res.redirect('/');

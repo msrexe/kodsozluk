@@ -14,6 +14,9 @@ const findUser = (cond) => {
     })
   });
 }
+
+// const registerUser = ()
+
 /**
  * @param {object} cond 
  * @param {int} limit the maximum number of documents the query will return default=10

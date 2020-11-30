@@ -20,6 +20,10 @@
     "short-username": "Kullanıcı adınız en az 4 karakter olmalı",
     "short-password": "Şifre 8 karakter veya daha uzun olmalı",
     "special-character-username": "Kullanıcı adı özel karakter içermemelidir",
-    "no-user": "Böyle bir kullanıcı yok 😞"
+    "no-user": "Böyle bir kullanıcı yok 😞",
+    "user-exist": "Bu kullanıcı adı zaten kullanılmakta",
+    "wrong-creds": "Girilen bilgiler herhangi bir kullanıcı ile eşleşmedi",
+    "attempt-too-soon": "Hesap şuanda kilitli, tekrar deneyiz",
+    "attempt-too-many": "Hesap şuanda kilitli, çok fazla geçersiz deneme"
   }
 }
