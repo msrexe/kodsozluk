@@ -29,12 +29,11 @@ const getEntries = async (cond = {}, limit = 10, page = 1, getUser = true) => {
   }
   let entries = await Entry.find(cond).sort('-date').limit(limit).skip((page-1)*limit).exec();
   entries = await Promise.all(entries.map(async (entry) => {
-    entry = entry.toJSON();
     if (getUser) {      
       const user = await findUser({ _id: entry.user});
-      entry.user = user.toJSON();
+      entry.user = user;
     }
-    return entry;
+    return entry.toJSON();
   }));
   return entries;
 }
